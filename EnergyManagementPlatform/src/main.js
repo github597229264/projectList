@@ -22,7 +22,12 @@ import {
   postAjax,
   http
 } from './axios/axiosFn.js'
+import axios from './axios/axios';//http 请求拦截
+
 const Bus = new Vue();
+//TODO mock单元测试
+//import UserCenter from './mock/user.js' //用户信息模块
+//UserCenter.bootstrap();
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
@@ -31,6 +36,7 @@ Vue.prototype.$moment = moment;
 Vue.prototype.$gAjax = getAjax;
 Vue.prototype.$pAjax = postAjax;
 Vue.prototype.$http = http;
+Vue.prototype.$axios = axios;
 
 
 /* eslint-disable no-new */
