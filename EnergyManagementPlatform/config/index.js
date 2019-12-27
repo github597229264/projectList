@@ -5,38 +5,44 @@
 const path = require('path')
 
 module.exports = {
-  dev: {
-
+  dev: {// dev 环境
+		env: require('./dev.env'),// 使用 config/dev.env.js 中定义的编译环境
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8880, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-
-
     /**
      * Source Maps
      */
 
     // https://webpack.js.org/configuration/devtool/#development
     devtool: 'cheap-module-eval-source-map',
-
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
-
-    cssSourceMap: true
+		autoOpenBrowser: true,
+    cssSourceMap: false,
+    proxyTable: {
+        '/api': {
+            target: '', //配置地址
+            changeOrigin: true, //允许跨域
+            pathRewrite: { //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+                '^/api': '/'
+            }
+        }
+    },
   },
 
-  build: {
+  build: {// production 环境
+  	env: require('./prod.env'),// 使用 config/prod.env.js 中定义的编译环境
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
@@ -44,12 +50,10 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
-
     /**
      * Source Maps
      */
-
-    productionSourceMap: true,
+    productionSourceMap: false,//是否开启 cssSourceMap
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 

@@ -4,7 +4,6 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -47,6 +46,10 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+      },
+      {  //手动添加这一条，相当于是编译识别sass!
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
