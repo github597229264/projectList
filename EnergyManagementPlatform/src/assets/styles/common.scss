@@ -1,0 +1,33 @@
+$m1680: 'screen and (max-width: 1680px)';
+$m1660: 'screen and (max-width: 1660px)';
+$m1440: 'screen and (max-width: 1440px)';
+$m1366: 'screen and (max-width: 1366px)';
+$m1360: 'screen and (max-width: 1360px)';
+$m1280: 'screen and (max-width: 1280px)';
+$m1024: 'screen and (max-width: 1024px)';
+$m800: 'screen and (max-width: 800px)';
+
+@mixin text-overflow($width:100%, $display:block) {
+  width: $width;
+  display: $display;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin position($station:absolute, $top:0, $right:0, $bottom:0, $left:0) {
+  position: $station;
+  left: $left;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+}
+
+@mixin media($mqString) {
+  @media #{$mqString} {
+    @content;
+  }
+}
+
+
