@@ -67,6 +67,7 @@
             style="border-top:solid 1px #505050;"
           >导入数据</p>
           <p :class="[{'actSty':'导出数据'==twoname},dataStyle]" @click="clickData('导出数据')">导出数据</p>
+          <p :class="[{'actSty':'设备管理'==twoname},dataStyle]" @click="clickData('设备管理')">设备管理</p>
           <ul class="newUl">
             <li v-for="(item,index) in initData" :key="index">
               <p class="title1" @click="title1Fn(item,index)">
@@ -458,14 +459,22 @@ export default {
   methods: {
     // 导入数据和导出数据
     clickData(ex) {
-      console.log(ex);
       this.twoname = ex;
-      if (this.twoname == "导出数据") {
-        this.$router.push("/EnergyBox/Export");
+      let path = '';
+      switch (this.twoname){
+      	case '导出数据':
+      		path = "/EnergyBox/Export";
+      		break;
+      	case '导入数据':
+      		path = "/EnergyBox/Import";
+      		break;
+      	case '设备管理':
+      		path = "/deviceManagement";
+      		break;
+      	default:
+      		break;
       }
-      if (this.twoname == "导入数据") {
-        this.$router.push("/EnergyBox/Import");
-      }
+      this.$router.push(path);
     },
     drop(e) {
       e.preventDefault();
