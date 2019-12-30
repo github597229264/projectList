@@ -43,12 +43,13 @@ const err = (error) => {
   return Promise.reject(error)
 }
 instance.interceptors.request.use(config => {
-    config.baseURL = window.vm.API.leansite.baseURL;
+    config.baseURL = window.vm.$API.baseURL;
+    //config.headers.common.Accept.accept = 'application/json';
 	if(config.method.toUpperCase() =="POST"){//post方式时，提交的参数转成string类型
 		config.data = window.vm.qs.stringify(config.data);
 	}
     //过滤拦截路径
-//	if(window.vm.API.leansite.constObj.requestFilter.indexOf(config.url) === -1){//拦截的请求
+//	if(window.vm.$API.constObj.requestFilter.indexOf(config.url) === -1){//拦截的请求
 //		let stateObj = window.vm.$store.state;
 //		if(stateObj.token && stateObj.token.length >0 ) {//token验证
 //			let submitToken = stateObj.token;

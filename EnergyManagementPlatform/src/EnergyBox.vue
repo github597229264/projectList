@@ -160,7 +160,8 @@
           </ul>
         </el-aside>-->
         <el-main>
-          <router-view @dragover.native="dragover($event)" @drop.native="drop($event)" />
+        	<DeviceLocaltionTree></DeviceLocaltionTree>
+          <!--<router-view @dragover.native="dragover($event)" @drop.native="drop($event)" />-->
         </el-main>
       </el-container>
       <div class="topNav" v-show="isTopShow" @click="isTopShow=false">
@@ -203,8 +204,12 @@
 </template>
 
 <script>
+	import DeviceLocaltionTree from './components/DeviceLocaltionTree.vue';
 export default {
   name: "EnergyBox",
+  components:{
+  	DeviceLocaltionTree//设备位置树
+  },
   data() {
     return {
       searcCh:"",

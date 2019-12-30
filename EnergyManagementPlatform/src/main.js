@@ -9,6 +9,8 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import moment from "moment"
 import $ from 'jquery'
+import api from "./common/api.js" //引入接口
+import commonFun from "./common/commonFun.js" //引入接口
 import Echarts from 'echarts'
 import HighCharts from 'highcharts'
 import VueHighcharts from 'vue-highcharts';
@@ -22,7 +24,7 @@ import {
   postAjax,
   http
 } from './axios/axiosFn.js'
-import axios from './axios/axios';//http 请求拦截
+import axios from './axios/axios.js';//http 请求拦截
 
 const Bus = new Vue();
 //TODO mock单元测试
@@ -32,6 +34,8 @@ const Bus = new Vue();
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 // Vue.use(Vuex);
+Vue.prototype.$API = api;
+Vue.prototype.$commonFun = commonFun;
 Vue.prototype.$moment = moment;
 Vue.prototype.$gAjax = getAjax;
 Vue.prototype.$pAjax = postAjax;
@@ -40,7 +44,7 @@ Vue.prototype.$axios = axios;
 
 
 /* eslint-disable no-new */
-new Vue({
+window.vm = new Vue({
   el: '#app',
   router,
   // store,

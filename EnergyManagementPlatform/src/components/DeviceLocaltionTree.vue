@@ -28,11 +28,11 @@
 		data() {
 			return {
 				defaultProps: {//tree与data字段映射
-          children: 'children',
-          label: 'departmentName',
-          id:'departmentId'
-      	},
-        deviceLocaltionList:[
+		          children: 'children',
+		          label: 'departmentName',
+		          id:'departmentId'
+		      	},
+		        deviceLocaltionList:[
 			    {
 			      "departmentId": 1,
 			      "upperId": null,
@@ -115,8 +115,40 @@
 			  ],
 			};
 		},
-		props: [],
-		
+        created() {
+        	this.getDeptData();//获取部门数据
+        },
+		methods:{
+			/**
+			 * 获取部门数据
+			 */
+			getDeptData() {
+				this.$axios({
+					method: 'get',
+					url: this.$API.getAllDepartments,
+				}).then((res) => {
+					var resData = res.data;
+					if(resData.code == 20001) {
+            		
+            		let oNewData = {
+            			childKey:'departmentId',
+            			fatherKey:'upperId'
+            		}
+            		this.deviceLocaltionList = this.$commonFun.toTreeDataNormal(resData.data,oNewData);
+					} else {
+						this.$message({
+							type: 'error',
+							message: '获取部门失败，请刷新重试！'
+						});
+					}
+				}).catch((err) => {
+					this.$message({
+						type: 'error',
+						message: '请求异常，请检查网络！'
+					});
+				})
+			},
+		}
 	};
 </script>
 <style lang="scss" scoped type="text/css">
