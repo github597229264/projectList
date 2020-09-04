@@ -16,7 +16,7 @@
     "element-ui": "^2.6.1",
     "highcharts": "^7.0.3",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "qs": "^6.6.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
